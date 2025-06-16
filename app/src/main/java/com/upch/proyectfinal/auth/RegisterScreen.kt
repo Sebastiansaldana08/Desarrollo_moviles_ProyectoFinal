@@ -72,7 +72,7 @@ fun RegisterScreen(
                         email = email,
                         password = password,
                         onSuccess = {
-                            navController.navigate("home") {
+                            navController.navigate("profile") {
                                 popUpTo("register") { inclusive = true }
                             }
                         },
