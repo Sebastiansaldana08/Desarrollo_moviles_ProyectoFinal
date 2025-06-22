@@ -1,42 +1,72 @@
 package com.upch.proyectfinal.ui.theme
 
-import android.app.Activity
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
+import android.app.Activity
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 
-private val DarkColorScheme = darkColorScheme(
-    primary = Purple80,
-    secondary = PurpleGrey80,
-    tertiary = Pink80
+// -----------------------------------------------------------------------------
+//  1. COLOR SCHEMES – Vibrant Vitality palette (see Color.kt)
+// -----------------------------------------------------------------------------
+
+private val LightColors = lightColorScheme(
+    primary            = BluePrimary,
+    onPrimary          = BlueOnPrimary,
+    primaryContainer   = BlueContainer,
+    onPrimaryContainer = BlueOnContainer,
+
+    secondary            = TurquoiseSecondary,
+    onSecondary          = BlueOnPrimary,
+    secondaryContainer   = TurquoiseContainer,
+    onSecondaryContainer = BlueOnContainer,
+
+    tertiary            = CoralTertiary,
+    onTertiary          = BlueOnPrimary,
+    tertiaryContainer   = CoralContainer,
+    onTertiaryContainer = BlueOnContainer,
+
+    background = Color(0xFFFDFEFF),
+    surface    = Color(0xFFFFFBFF),
+    onBackground = Color(0xFF1B1B1F),
+    onSurface    = Color(0xFF1B1B1F)
 )
 
-private val LightColorScheme = lightColorScheme(
-    primary = Purple40,
-    secondary = PurpleGrey40,
-    tertiary = Pink40
+private val DarkColors = darkColorScheme(
+    primary            = BlueContainer,
+    onPrimary          = BlueOnContainer,
+    primaryContainer   = BluePrimary,
+    onPrimaryContainer = BlueOnPrimary,
 
-    /* Other default colors to override
-    background = Color(0xFFFFFBFE),
-    surface = Color(0xFFFFFBFE),
-    onPrimary = Color.White,
-    onSecondary = Color.White,
-    onTertiary = Color.White,
-    onBackground = Color(0xFF1C1B1F),
-    onSurface = Color(0xFF1C1B1F),
-    */
+    secondary            = TurquoiseContainer,
+    onSecondary          = BlueOnContainer,
+    secondaryContainer   = TurquoiseSecondary,
+    onSecondaryContainer = BlueOnPrimary,
+
+    tertiary            = CoralContainer,
+    onTertiary          = BlueOnContainer,
+    tertiaryContainer   = CoralTertiary,
+    onTertiaryContainer = BlueOnPrimary,
+
+    background = Color(0xFF101113),
+    surface    = Color(0xFF181A1D),
+    onBackground = Color(0xFFE3E3E7),
+    onSurface    = Color(0xFFE3E3E7)
 )
+
+// -----------------------------------------------------------------------------
+//  2. THEME COMPOSABLE
+// -----------------------------------------------------------------------------
 
 @Composable
-fun ProyectfinalTheme(
+fun HealthSnapTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
-    // Dynamic color is available on Android 12+
     dynamicColor: Boolean = true,
     content: @Composable () -> Unit
 ) {
@@ -45,14 +75,13 @@ fun ProyectfinalTheme(
             val context = LocalContext.current
             if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
         }
-
-        darkTheme -> DarkColorScheme
-        else -> LightColorScheme
+        darkTheme -> DarkColors
+        else      -> LightColors
     }
 
     MaterialTheme(
         colorScheme = colorScheme,
-        typography = Typography,
-        content = content
+        typography  = Typography,  // defined in Type.kt
+        content     = content
     )
 }

@@ -5,13 +5,13 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.navigation.compose.rememberNavController
 import com.upch.proyectfinal.navigation.AppNavHost
-import com.upch.proyectfinal.ui.theme.ProyectfinalTheme
+import com.upch.proyectfinal.ui.theme.HealthSnapTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            ProyectfinalTheme {
+            HealthSnapTheme {
                 val navController = rememberNavController()
                 AppNavHost(navController = navController)
             }

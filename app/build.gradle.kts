@@ -1,3 +1,9 @@
+android {
+    buildFeatures {
+        compose = true
+    }
+}
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -60,6 +66,7 @@ dependencies {
     // Room (SQLite)
     implementation("androidx.room:room-runtime:2.6.1")
     implementation("androidx.room:room-ktx:2.6.1")
+    implementation(libs.firebase.firestore.ktx)
     kapt("androidx.room:room-compiler:2.6.1")
 
     // ViewModel para Compose
@@ -73,6 +80,8 @@ dependencies {
     implementation("io.coil-kt:coil-compose:2.4.0")
 
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
+
+    implementation("androidx.compose.material:material-icons-extended:1.6.0")
 
 
     // Testing
