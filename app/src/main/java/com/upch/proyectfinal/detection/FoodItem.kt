@@ -1,9 +1,8 @@
 package com.upch.proyectfinal.detection
 
 data class FoodItem(
-    val name: String,
+    val label: String,
     val score: Float,
-    val boundingBox: List<Float>,
-    val calories: Int
+    val boundingBox: List<Int> = emptyList(),
+    val calories: Int = 0
 )
-
