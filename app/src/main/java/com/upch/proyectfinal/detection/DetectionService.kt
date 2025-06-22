@@ -1,27 +1,20 @@
 package com.upch.proyectfinal.detection
 
-import android.content.Context
-import android.net.Uri
-import kotlin.random.Random
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
+import okhttp3.ResponseBody
+import retrofit2.Response
+import retrofit2.http.*
 
-val caloriasPorAlimento = mapOf(
-    "rice" to 130,
-    "fries potatoes" to 312,
-    "tomatoes" to 18,
-    "onion" to 40,
-    "meat" to 250
-)
-
-object DetectionService {
-    suspend fun detectarAlimentos(context: Context, imageUri: Uri): List<FoodItem> {
-        val ingredientesSimulados = listOf("rice", "fries potatoes", "tomatoes", "onion", "meat")
-
-        return ingredientesSimulados.map { ingrediente ->
-            FoodItem(
-                label = ingrediente,
-                score = Random.nextDouble(0.85, 1.0).toFloat(),  // confianza simulada
-                calories = caloriasPorAlimento[ingrediente] ?: 0
-            )
-        }
-    }
+interface DetectionService {
+    @Multipart
+    @POST("tools/agentic-object-detection")
+    suspend fun detectFood(
+        @Part image: MultipartBody.Part,
+        @Part("prompts") prompts: RequestBody,
+        @Part("model") model: RequestBody =
+            "agentic".toRequestBody("text/plain".toMediaTypeOrNull())
+    ): Response<ResponseBody>
 }
