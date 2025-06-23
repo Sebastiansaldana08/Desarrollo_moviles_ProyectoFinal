@@ -12,6 +12,7 @@ import com.upch.proyectfinal.profile.BMIScreen
 import com.upch.proyectfinal.detection.CameraScreen
 import com.upch.proyectfinal.detection.ResultScreen
 import androidx.navigation.navArgument
+// import com.upch.proyectfinal.auth.RegisterScreenPreviewOnly
 import com.upch.proyectfinal.history.HistoryScreen
 
 @Composable
